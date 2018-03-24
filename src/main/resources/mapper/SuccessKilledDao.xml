@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.fengkmm.seckill.mapper.SuccessKillDao">
+    <resultMap id="SuccessKilled" type="me.fengkmm.seckill.entity.SuccessKilled">
+        <id property="goodsId" column="seckill_id"/>
+        <id property="userPhone" column="user_phone"/>
+        <result property="state" column="state"/>
+        <association property="seckillGoods" javaType="seckillGoods"/>
+    </resultMap>
+
+    <!--主键冲突，保妥-->
+    <insert id="insertSuccessKilled">
+        INSERT IGNORE INTO seckilldb.seckill_success (goods_id, user_phone)
+        VALUES (#{goodsId}, #{userPhone})
+    </insert>
+
+    <select id="queryByGoodsIdAndUserPhone" resultType="SuccessKilled">
+        SELECT
+            ss.goods_id,
+            ss.user_phone,
+            ss.create_time,
+            ss.state,
+            sg.goods_id,
+            sg.name,
+            sg.quantity,
+            sg.start_time,
+            sg.end_time,
+            sg.create_time
+        FROM seckilldb.seckill_success ss,seckilldb.seckill_goods sg
+        WHERE ss.goods_id=sg.goods_id AND ss.goods_id = #{goodsId} AND ss.user_phone = #{userPhone}
+    </select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.fengkmm.seckill.mapper.SecKillGoodsDao">
+    <resultMap id="SeckillGoods" type="me.fengkmm.seckill.entity.SeckillGoods">
+        <id property="goodsId" column="goods_id"/>
+        <id property="name" column="name"/>
+        <result property="quantity" column="quantity"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <update id="reduceNumber">
+        UPDATE
+            seckilldb.seckill_goods
+        SET
+            quantity = quantity - 1
+        WHERE goods_id = #{goodsId}
+              AND start_time <![CDATA[ <= ]]>#{secKillTime}
+              AND end_time >= #{secKillTime}
+              AND quantity > 0
+    </update>
+
+    <select id="queryById" resultType="seckillGoods" parameterType="long">
+        SELECT  goods_id,name,quantity,start_time,end_time,create_time
+        FROM seckilldb.seckill_goods
+        WHERE goods_id = #{goodsId}
+    </select>
+
+
+    <select id="queryAll" resultType="seckillGoods">
+        SELECT goods_id,name,quantity,start_time,end_time,create_time
+        FROM seckilldb.seckill_goods
+        ORDER BY create_time DESC
+        LIMIT #{offet}, #{limit}
+    </select>
+</mapper>
