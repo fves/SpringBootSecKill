@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Data
 @Repository
-public class SuccessKilled {
+public class SuccessSecKilled {
     /**
      * 商品ID
      */
@@ -31,16 +31,16 @@ public class SuccessKilled {
     /**
      * 秒杀商品信息
      */
-    private SeckillGoods seckillGoods;
+    private SecKillGoods secKillGoods;
 
-    public SuccessKilled() {
+    public SuccessSecKilled() {
     }
 
-    public SuccessKilled(long goodsId, long userPhone, short state, Date createTime, SeckillGoods seckillGoods) {
+    public SuccessSecKilled(long goodsId, long userPhone, short state, Date createTime, SecKillGoods secKillGoods) {
         this.goodsId = goodsId;
         this.userPhone = userPhone;
         this.state = state;
         this.createTime = createTime;
-        this.seckillGoods = seckillGoods;
+        this.secKillGoods = secKillGoods;
     }
 }

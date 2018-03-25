@@ -25,14 +25,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="seckill:${seckillList}">
-                        <td th:text="${seckill.name}"></td>
-                        <td th:text="${seckill.number}"></td>
-                        <td th:text="${seckill.startTime}"></td>
-                        <td th:text="${seckill.endTime}"></td>
-                        <td th:text="${seckill.createTime}"></td>
+                    <tr th:each="secKillGoods:${seckillGoodsList}">
+                        <td th:text="${secKillGoods.name}"></td>
+                        <td th:text="${secKillGoods.quantity}"></td>
+                        <td th:text="${#dates.format(secKillGoods.startTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${#dates.format(secKillGoods.endTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${#dates.format(secKillGoods.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
                         <td>
-                            <a class="btn btn-info" th:href="@{${seckill.goodsId}+'/detail'}">link</a>
+                            <a class="btn btn-info" th:href="@{${secKillGoods.goodsId}+'/detail'}">link</a>
                         </td>
                     </tr>
                 </tbody>

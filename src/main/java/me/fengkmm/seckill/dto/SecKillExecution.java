@@ -2,15 +2,16 @@ package me.fengkmm.seckill.dto;
 
 import lombok.Data;
 import lombok.ToString;
-import me.fengkmm.seckill.entity.SuccessKilled;
+import me.fengkmm.seckill.entity.SuccessSecKilled;
 import me.fengkmm.seckill.enums.SecKillStatEnum;
 
 /**
  * 封装秒杀执行后结果
+ * @author Administrator
  */
 @Data
 @ToString
-public class SeckillExecution {
+public class SecKillExecution {
     /**
      * 秒杀的商品ID
      */
@@ -26,13 +27,13 @@ public class SeckillExecution {
     /**
      * 秒杀成功对象
      */
-    private SuccessKilled successKilled;
+    private SuccessSecKilled successSecKilled;
 
 
-    public SeckillExecution(long seckillId, SecKillStatEnum secKillStatEnum, SuccessKilled successKilled) {
+    public SecKillExecution(long seckillId, SecKillStatEnum secKillStatEnum, SuccessSecKilled successSecKilled) {
         this.seckillId = seckillId;
         this.state = secKillStatEnum.getState();
         this.stateInfo = secKillStatEnum.getStateInfo();
-        this.successKilled = successKilled;
+        this.successSecKilled = successSecKilled;
     }
 }

@@ -3,12 +3,11 @@ var seckill = {
         now: function () {
             return '/seckill/time/now';
         },
-        exposer: function (seckillId) {
-            return '/seckill/' + seckillId + '/exposer';
+        exposer: function (goodsId) {
+            return '/seckill/' + goodsId + '/exposer';
         },
-        execution: function (seckillId, md5) {
-            return '/seckill/' + seckillId + '/' + md5 + '/execution';
-
+        execution: function (goodsId) {
+            return '/seckill/' + goodsId + '/execution';
         }
     },
     detail: {
@@ -18,7 +17,7 @@ var seckill = {
          */
         init: function (params) {
             var killPhone = $.cookie('userPhone');
-            var seckillId = params['seckillId'];
+            var goodsId = params['goodsId'];
             var startTime = params['startTime'];
             var endTime = params['endTime'];
             if (!seckill.validatePhone(killPhone)) {
@@ -45,12 +44,12 @@ var seckill = {
             $.get(seckill.URL.now(), {}, function (result) {
                 if (result && result['success']) {
                     var nowTime = result['data'];
-                    seckill.countdown(seckillId, nowTime, startTime, endTime);
+                    seckill.countdown(goodsId, nowTime, startTime, endTime);
                 }
             });
         }
     },
-    countdown: function (seckillId, nowTime, startTime, endTime) {
+    countdown: function (goodsId, nowTime, startTime, endTime) {
         var seckillBox = $('#seckill-box');
         if (nowTime > endTime) {
             seckillBox.html('秒杀结束');
@@ -60,33 +59,33 @@ var seckill = {
                 var format = event.strftime('秒杀倒计时：%D天 %H时 %M分 %S秒');
                 seckillBox.html(format);
             }).on('finish.countdown', function () {
-                seckill.handleSeckill(seckillId, seckillBox);
+                seckill.handleSeckill(goodsId, seckillBox);
             });
         } else {
-            seckill.handleSeckill(seckillId, seckillBox);
+            seckill.handleSeckill(goodsId, seckillBox);
         }
     },
     validatePhone: function (phone) {
         return phone && phone.length === 11 && !isNaN(phone);
     },
-    handleSeckill: function (seckillId, seckillBox) {
+    handleSeckill: function (goodsId, seckillBox) {
         seckillBox.hide().html('<button class="btn btn-primary btn-lg" id="killBtn">开始秒杀</button>').show();
-        $.post(seckill.URL.exposer(seckillId), {}, function (result) {
+        $.post(seckill.URL.exposer(goodsId), {}, function (result) {
             if (result && result['success']) {
                 var exposer = result['data'];
                 if (exposer['exposed']) {
                     var md5 = exposer['md5'];
-                    var killUrl = seckill.URL.execution(seckillId, md5);
+                    var killUrl = seckill.URL.execution(goodsId, md5);
                     $('#killBtn').one('click', function () {
                         $(this).addClass('disabled');
-                        $.post(killUrl, {}, function (result) {
+                        $.post(killUrl, {
+                            md5:md5
+                        }, function (result) {
                             if (result && result['success']) {
                                 var killResult = result['data'];
-                                var state = killResult['state'];
-                                var stateInfo = killResult['stateInfo'];
-                                seckillBox.html('<span class="label label-success">' + stateInfo + '</span>');
+                                seckillBox.html('<span class="label label-success">' + killResult['stateInfo'] + '</span>');
                             }else {
-                                alert(result['error']);
+                                seckillBox.html('<span class="label label-success">' + result['error'] + '</span>');
                             }
                         });
                     });
@@ -94,7 +93,7 @@ var seckill = {
                     var node = exposer['now'];
                     var start = exposer['start'];
                     var end = exposer['end'];
-                    seckill.countdown(seckillId, start, end);
+                    seckill.countdown(goodsId, start, end);
                 }
             } else {
 

@@ -2,21 +2,28 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="me.fengkmm.seckill.mapper.SuccessKillDao">
-    <resultMap id="SuccessKilled" type="me.fengkmm.seckill.entity.SuccessKilled">
-        <id property="goodsId" column="seckill_id"/>
+<mapper namespace="me.fengkmm.seckill.mapper.SuccessSecKillDao">
+    <resultMap id="SuccessSecKilled" type="successSecKilled">
+        <id property="goodsId" column="goods_id"/>
         <id property="userPhone" column="user_phone"/>
         <result property="state" column="state"/>
-        <association property="seckillGoods" javaType="seckillGoods"/>
+        <result property="createTime" column="create_time"/>
+        <association property="secKillGoods" javaType="secKillGoods">
+            <id property="goodsId" column="goods_id"/>
+            <result property="name" column="name"/>
+            <result property="quantity" column="quantity"/>
+            <result property="startTime" column="start_time"/>
+            <result property="endTime" column="end_time"/>
+            <result property="createTime" column="create_time"/>
+        </association>
     </resultMap>
-
-    <!--主键冲突，保妥-->
+    <!--IGNORE 防止主键冲突报错-->
     <insert id="insertSuccessKilled">
         INSERT IGNORE INTO seckilldb.seckill_success (goods_id, user_phone)
         VALUES (#{goodsId}, #{userPhone})
     </insert>
 
-    <select id="queryByGoodsIdAndUserPhone" resultType="SuccessKilled">
+    <select id="queryByGoodsIdAndUserPhone" resultMap="SuccessSecKilled">
         SELECT
             ss.goods_id,
             ss.user_phone,

@@ -1,6 +1,6 @@
 package me.fengkmm.seckill.mapper;
 
-import me.fengkmm.seckill.entity.SuccessKilled;
+import me.fengkmm.seckill.entity.SuccessSecKilled;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,20 +10,20 @@ import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SuccessKillDaoTest {
+public class SuccessSecKillDaoTest {
 
     @Resource
-    private SuccessKillDao successKillDao;
+    private SuccessSecKillDao successSecKillDao;
 
     @Test
     public void insertSuccessKulled() {
-        int i = successKillDao.insertSuccessKulled(1000, -15279278673L);
+        int i = successSecKillDao.insertSuccessKilled(1000L, 15279278673L);
         System.out.println(i);
     }
 
     @Test
     public void queryByIdWithSeckill() {
-        SuccessKilled successKilled = successKillDao.queryByIdWithSeckill(1000,15279278673L);
-        System.out.println(successKilled);
+        SuccessSecKilled successSecKilled = successSecKillDao.queryByGoodsIdAndUserPhone(1000,12222222222L);
+        System.out.println(successSecKilled);
     }
 }

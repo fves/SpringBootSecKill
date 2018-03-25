@@ -2,27 +2,31 @@ package me.fengkmm.seckill.dto;
 
 import lombok.Data;
 
+/**
+ * 封装秒杀返回结果
+ * @author Administrator
+ */
 @Data
-public class SeckillResult<T> {
+public class SecKillResult<T> {
     private boolean success;
     private T data;
     private String error;
 
-    public SeckillResult() {
+    public SecKillResult() {
     }
 
-    public SeckillResult(boolean success, T data, String error) {
+    public SecKillResult(boolean success, T data, String error) {
         this.success = success;
         this.data = data;
         this.error = error;
     }
 
-    public SeckillResult(boolean success, T data) {
+    public SecKillResult(boolean success, T data) {
         this.success = success;
         this.data = data;
     }
 
-    public SeckillResult(boolean success, String error) {
+    public SecKillResult(boolean success, String error) {
         this.success = success;
         this.error = error;
     }

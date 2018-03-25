@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
-import java.util.HashMap;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -17,7 +16,7 @@ public class SecKillGoodsDaoTest {
 
     @Test
     public void reduceNumber() {
-        System.out.println(secKillGoodsDao.reduceNumber(1000, new Date()));
+        System.out.println(secKillGoodsDao.reduceQuantity(1000, new Date()));
     }
 
     @Test
@@ -28,14 +27,5 @@ public class SecKillGoodsDaoTest {
     @Test
     public void queryAll() {
         System.out.println(secKillGoodsDao.queryAll(0, 3));
-    }
-
-    @Test
-    public void queryMap() {
-        HashMap hashMap = secKillGoodsDao.queryMap(1000);
-        hashMap.forEach((x,y)->{
-            System.out.println(x);
-            System.out.println(y);
-        });
     }
 }

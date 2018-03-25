@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Data
 @Repository
-public class SeckillGoods {
+public class SecKillGoods {
     /**
      * 商品ID
      */
@@ -37,10 +37,10 @@ public class SeckillGoods {
      */
     private Date createTime;
 
-    public SeckillGoods() {
+    public SecKillGoods() {
     }
 
-    public SeckillGoods(long goodsId, String name, int number, Date startTime, Date endTime, Date createTime) {
+    public SecKillGoods(long goodsId, String name, int number, Date startTime, Date endTime, Date createTime) {
         this.goodsId = goodsId;
         this.name = name;
         this.quantity = number;

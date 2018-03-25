@@ -6,8 +6,8 @@ package me.fengkmm.seckill.enums;
  */
 
 public enum SecKillStatEnum {
+    END(0, "库存为0或秒杀已结束"),
     SUCCESS(1, "秒杀成功"),
-    END(0, "秒杀结束"),
     REPEAT_KILL(-1, "重复秒杀"),
     INNER_ERROR(-2, "系统异常"),
     DATA_REWRITE(-3, "数据篡改");

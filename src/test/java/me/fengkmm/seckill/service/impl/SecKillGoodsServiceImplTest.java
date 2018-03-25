@@ -2,8 +2,8 @@ package me.fengkmm.seckill.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import me.fengkmm.seckill.dto.Exposer;
-import me.fengkmm.seckill.dto.SeckillExecution;
-import me.fengkmm.seckill.entity.SeckillGoods;
+import me.fengkmm.seckill.dto.SecKillExecution;
+import me.fengkmm.seckill.entity.SecKillGoods;
 import me.fengkmm.seckill.exception.SecKillException;
 import me.fengkmm.seckill.service.SeckillService;
 import org.junit.Test;
@@ -17,20 +17,20 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class SeckillGoodsServiceImplTest {
+public class SecKillGoodsServiceImplTest {
 
     @Autowired
     SeckillService seckillService;
 
     @Test
     public void getSeckillList() {
-        List<SeckillGoods> seckillGoodsList = seckillService.getSeckillList();
-        log.info(seckillGoodsList.toString());
+        List<SecKillGoods> secKillGoodsList = seckillService.getSeckillList();
+        log.info(secKillGoodsList.toString());
     }
 
     @Test
     public void getById() {
-        SeckillGoods byId = seckillService.getById(1000);
+        SecKillGoods byId = seckillService.getById(1000);
         System.out.println(byId);
     }
 
@@ -42,7 +42,7 @@ public class SeckillGoodsServiceImplTest {
         if (exposer.isExposed()) {
             String md5 = exposer.getMd5();
             try {
-                SeckillExecution seckillExecution = seckillService.executeSeckill(seckillId, userPhone, md5);
+                SecKillExecution secKillExecution = seckillService.executeSeckill(seckillId, userPhone, md5);
             } catch (SecKillException ignored) {
 
             }

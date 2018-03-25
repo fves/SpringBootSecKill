@@ -1,6 +1,6 @@
 package me.fengkmm.seckill.mapper;
 
-import me.fengkmm.seckill.entity.SuccessKilled;
+import me.fengkmm.seckill.entity.SuccessSecKilled;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface SuccessKillDao {
+public interface SuccessSecKillDao {
     /**
      * 插入成功秒杀用户
      * @param goodsId 秒杀id
@@ -26,6 +26,6 @@ public interface SuccessKillDao {
      * @param userPhone 用户手机号码
      * @return 成功秒杀明细
      */
-    SuccessKilled queryByGoodsIdAndUserPhone(@Param("goodsId") long goodsId,@Param("userPhone")long userPhone);
+    SuccessSecKilled queryByGoodsIdAndUserPhone(@Param("goodsId") long goodsId, @Param("userPhone")long userPhone);
 
 }

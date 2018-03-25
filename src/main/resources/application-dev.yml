@@ -17,9 +17,12 @@ spring:
     hikari:
       max-lifetime: 1765000
       maximum-pool-size: 1
+  thymeleaf:
+    cache: false
 
 logging:
   level.me.fengkmm.spike.mapper: debug
+  level.me.fengkmm: debug
 #  level.org.springframework.boot.autoconfigure: debug
 #  level.org.springframework.web.servlet: debug
 
