@@ -11,7 +11,7 @@ SpringBoot + Mybatis + Redis+ Thymeleaf + Maven
 熟悉并掌握一个项目的开发流程，练习已学习的相关技术，了解相关技术的内部实现原理。
 
 在慕课网看到了Java高并发系列课程，并学习相关内容
-慕课老师使用的开发工具是: Eclipse
+慕课老师使用的开发工具是: Eclipse  
 开发环境是：Tomcat + Spring + SpringMVC + Mybatis + Redis + Maven
 
 [慕课网(Java高并发系列程)](http://www.imooc.com/u/2145618/courses?sort=publish)
@@ -26,13 +26,14 @@ SpringBoot + Mybatis + Redis+ Thymeleaf + Maven
 
 ## 整体流程
 
-
-![URL设计](/src/main/resources/流程/页面流程.png)
 <center>__页面流程__</center>
-![URL设计](/src/main/resources/流程/详情页流程逻辑.png)
+![URL设计](/src/main/resources/流程/页面流程.png)
+
 <center>__详情页流程逻辑__</center>
-![URL设计](/src/main/resources/流程/URL设计.png)
+![URL设计](/src/main/resources/流程/详情页流程逻辑.png)
+
 <center>__URL设计__</center>
+![URL设计](/src/main/resources/流程/URL设计.png)
 
 
 ## 数据库
