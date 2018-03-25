@@ -26,12 +26,13 @@ SpringBoot + Mybatis + Redis+ Thymeleaf + Maven
 
 ## 整体流程
 
-__页面流程__
+
 ![URL设计](/src/main/resources/流程/页面流程.png)
-__详情页流程逻辑__
+<center>__页面流程__</center>
 ![URL设计](/src/main/resources/流程/详情页流程逻辑.png)
-__URL设计__
+<center>__详情页流程逻辑__</center>
 ![URL设计](/src/main/resources/流程/URL设计.png)
+<center>__URL设计__</center>
 
 
 ## 数据库
